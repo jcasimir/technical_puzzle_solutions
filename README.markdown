@@ -1,0 +1,1 @@
+Solutions to exercises found at https://github.com/turingschool/technical_puzzles
