@@ -10,22 +10,17 @@ class PatternGenerator
   end
 
   def all
-    sets = pattern.chars.map{|c| codes_for(c)}
-    output = []
+    compute_all(pattern)
+  end
 
-    sets[0].each do |a|
-      sets[1].each do |b|
-        sets[2].each do |c|
-          sets[3].each do |d|
-            sets[4].each do |e|
-              output << (a + b + c + d + e)
-            end
-          end
-        end
-      end
+  def compute_all(fragment)
+    if fragment.length == 1
+      codes_for(fragment)
+    else
+      first = fragment[0]
+      rest = fragment[1..-1]
+      codes_for(first).product(compute_all(rest)).map{|g| g.inject(:+)}
     end
-
-    return output
   end
 
   def codes_for(character)
